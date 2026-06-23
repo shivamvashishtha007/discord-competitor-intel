@@ -1,0 +1,12 @@
+{
+  "name": "discord-competitor-intel",
+  "version": "1.0.0",
+  "description": "Scheduled Discord competitor monitoring using GitHub Actions and Apps Script",
+  "type": "module",
+  "scripts": {
+    "start": "node check-discord.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
