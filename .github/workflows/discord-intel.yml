@@ -1,0 +1,31 @@
+name: Discord Competitor Intel
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+jobs:
+  monitor-discord:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run Discord competitor monitor
+        run: node check-discord.js
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+          LDPLAYER_FEED_CHANNEL_ID: ${{ secrets.LDPLAYER_FEED_CHANNEL_ID }}
+          MANUAL_INTAKE_CHANNEL_ID: ${{ secrets.MANUAL_INTAKE_CHANNEL_ID }}
+          COMPETITOR_ALERTS_CHANNEL_ID: ${{ secrets.COMPETITOR_ALERTS_CHANNEL_ID }}
+          APPS_SCRIPT_WEB_APP_URL: ${{ secrets.APPS_SCRIPT_WEB_APP_URL }}
+          SCRIPT_SECRET: ${{ secrets.SCRIPT_SECRET }}
+          MESSAGE_LIMIT_PER_CHANNEL: 50
