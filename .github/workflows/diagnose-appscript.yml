@@ -1,0 +1,23 @@
+name: Diagnose Apps Script Endpoint
+
+on:
+  workflow_dispatch:
+
+jobs:
+  diagnose-appscript:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Run Apps Script diagnostics
+        run: node diagnose-appscript.js
+        env:
+          APPS_SCRIPT_WEB_APP_URL: ${{ secrets.APPS_SCRIPT_WEB_APP_URL }}
+          SCRIPT_SECRET: ${{ secrets.SCRIPT_SECRET }}
